@@ -1,5 +1,5 @@
 [build]
-  publish = "dbi-playbook"
+  publish = "."
 
 [[headers]]
   for = "/*"
