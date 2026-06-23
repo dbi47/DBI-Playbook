@@ -5,664 +5,650 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DBI New Hire Playbook</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ── Tokens ── */
-    :root {
-      --navy:      #1A2B4A;
-      --teal:      #0A7EA4;
-      --teal-lt:   #E8F6FB;
-      --gold:      #E8A020;
-      --gold-lt:   #FDF4E3;
-      --white:     #FFFFFF;
-      --off-white: #F5F7FA;
-      --grey-100:  #EEF1F6;
-      --grey-300:  #C4CDD9;
-      --grey-500:  #7A8899;
-      --grey-800:  #2E3A4A;
-      --text:      #1A2B4A;
-      --radius:    12px;
-      --shadow:    0 2px 16px rgba(10, 126, 164, 0.10);
-    }
-
+    /* ── RESET & TOKENS (exact Event Master palette) ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:      #1a1433;
+      --paper:    #f4f3f8;
+      --cream:    #eae8f4;
+      --accent:   #c2185b;
+      --mid:      #6b6485;
+      --line:     #d4d0e8;
+      --navy-a:   #1a1433;
+      --navy-b:   #2d3a8c;
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--off-white);
-      color: var(--text);
-      line-height: 1.6;
+      --red-bg:   #fde8f0;
+      --red-fg:   #b0175a;
+      --amb-bg:   #fff4e0;
+      --amb-fg:   #8a5c00;
+      --grn-bg:   #e0f0ea;
+      --grn-fg:   #1a6040;
+      --blu-bg:   #e8ecf8;
+      --blu-fg:   #2d3a8c;
+
+      --white:    #ffffff;
+      --yell:     #f8f6ff;
+      --radius:   6px;
+      --shadow:   0 2px 20px rgba(45,58,140,.12);
+      --sidebar-w: 224px;
+      --header-h:  60px;
     }
 
-    /* ── Header ── */
-    header {
-      background: var(--navy);
-      color: var(--white);
-      padding: 0 2rem;
+    html, body { height: 100%; }
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      height: var(--header-h);
+      background: linear-gradient(135deg, #1a1433 0%, #2d3a8c 100%);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      height: 68px;
+      padding: 0 24px;
+      gap: 16px;
+      flex-shrink: 0;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      z-index: 200;
     }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+    .topbar-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f4f3f8;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .logo-mark {
-      width: 38px;
-      height: 38px;
-      background: var(--teal);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: var(--white);
-      font-weight: 400;
+    .topbar-logo span {
+      background: linear-gradient(90deg, #c2185b, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .brand-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--grey-300);
-    }
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--grey-500);
-      margin-top: 1px;
-    }
-    header nav {
-      display: flex;
-      gap: 0.25rem;
-    }
-    header nav a {
-      color: var(--grey-300);
-      text-decoration: none;
-      font-size: 0.8rem;
+    .topbar-title {
+      flex: 1;
+      font-size: .72rem;
       font-weight: 500;
-      padding: 0.4rem 0.85rem;
-      border-radius: 6px;
-      transition: background 0.18s, color 0.18s;
+      color: #9088b8;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
-    header nav a:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+    .topbar-date {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      color: #6860a0;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
 
-    /* ── Hero ── */
+    /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1C3D6B 55%, #0A7EA4 100%);
-      color: var(--white);
-      padding: 4rem 2rem 3.5rem;
+      background: linear-gradient(135deg, #1a1433 0%, #2d3a8c 60%, #6b2460 100%);
+      color: #f4f3f8;
+      padding: 3.5rem 2.5rem 3rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
     .hero::before {
       content: '';
       position: absolute;
-      width: 600px; height: 600px;
+      width: 500px; height: 500px;
       border-radius: 50%;
-      background: rgba(10,126,164,0.12);
-      top: -180px; right: -120px;
+      background: rgba(194,24,91,.1);
+      top: -160px; right: -100px;
       pointer-events: none;
     }
     .hero-eyebrow {
-      font-size: 0.75rem;
+      font-size: .7rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
+      color: #c2185b;
+      margin-bottom: .65rem;
     }
     .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 1rem;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: .85rem;
+      letter-spacing: -.02em;
     }
     .hero h1 em {
       font-style: italic;
-      color: #7DD3EA;
+      font-weight: 300;
+      color: #b0a8d8;
     }
     .hero p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.78);
-      max-width: 560px;
-      margin: 0 auto 2rem;
+      font-size: .95rem;
+      color: #9088b8;
+      max-width: 520px;
+      margin: 0 auto 1.75rem;
     }
     .hero-chips {
       display: flex;
-      gap: 0.75rem;
+      gap: .65rem;
       justify-content: center;
       flex-wrap: wrap;
     }
     .chip {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: var(--white);
-      font-size: 0.78rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: #b0a8d8;
+      font-size: .72rem;
       font-weight: 500;
-      padding: 0.35rem 0.9rem;
+      padding: .3rem .85rem;
       border-radius: 20px;
-      backdrop-filter: blur(4px);
     }
-    .chip.gold { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    .chip.accent { background: rgba(194,24,91,.25); border-color: rgba(194,24,91,.4); color: #f0c8d8; }
 
-    /* ── Progress bar ── */
-    .progress-bar-wrap {
-      background: var(--white);
-      border-bottom: 1px solid var(--grey-100);
-      padding: 1rem 2rem;
+    /* ── PROGRESS BAR ── */
+    .progress-bar-wrap-top {
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      padding: .85rem 1.5rem;
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.25rem;
+      flex-shrink: 0;
     }
-    .progress-label {
-      font-size: 0.78rem;
+    .progress-label-top {
+      font-size: .66rem;
       font-weight: 600;
-      color: var(--grey-500);
+      color: var(--mid);
       white-space: nowrap;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: .08em;
     }
     .progress-track {
       flex: 1;
-      height: 6px;
-      background: var(--grey-100);
-      border-radius: 99px;
+      height: 7px;
+      background: var(--line);
+      border-radius: 4px;
       overflow: hidden;
     }
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--teal), var(--gold));
-      border-radius: 99px;
-      transition: width 0.5s ease;
+      background: var(--grn-fg);
+      border-radius: 4px;
+      transition: width .4s ease;
     }
     .progress-pct {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--teal);
-      min-width: 36px;
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--grn-fg);
+      min-width: 32px;
       text-align: right;
     }
 
-    /* ── Layout ── */
-    .layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      min-height: calc(100vh - 68px - 56px);
+    /* ── LAYOUT ── */
+    .app-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
     }
 
-    /* ── Sidebar ── */
+    /* ── SIDEBAR ── */
     aside {
-      background: var(--white);
-      border-right: 1px solid var(--grey-100);
-      padding: 1.5rem 0;
-      position: sticky;
-      top: 68px;
-      height: calc(100vh - 68px);
+      width: var(--sidebar-w);
+      background: linear-gradient(180deg, #1a1433 0%, #130f2a 100%);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
       overflow-y: auto;
-    }
-    .sidebar-section {
-      padding: 0 1rem 0.5rem;
+      overflow-x: hidden;
+      padding: 16px 0 60px;
     }
     .sidebar-heading {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      padding: 12px 16px 4px;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--grey-300);
-      padding: 0 0.75rem;
-      margin-bottom: 0.4rem;
+      color: #4a4270;
     }
     .sidebar-link {
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      padding: 0.55rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 500;
-      color: var(--grey-800);
-      text-decoration: none;
+      gap: 10px;
+      padding: 11px 18px;
       cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      margin-bottom: 0.1rem;
+      font-size: .82rem;
+      color: #b0a8d8;
+      border-left: 3px solid transparent;
+      transition: all .15s;
+      user-select: none;
       border: none;
+      border-left: 3px solid transparent;
       background: none;
       width: 100%;
       text-align: left;
     }
-    .sidebar-link:hover { background: var(--teal-lt); color: var(--teal); }
-    .sidebar-link.active { background: var(--teal-lt); color: var(--teal); font-weight: 600; }
-    .sidebar-link .icon { font-size: 1rem; width: 20px; text-align: center; }
+    .sidebar-link:hover { background: rgba(255,255,255,.05); color: #f0eeff; }
+    .sidebar-link.active { background: rgba(194,24,91,.18); color: #f0eeff; border-left-color: var(--accent); }
+    .sidebar-link .icon { font-size: 1.05rem; width: 20px; text-align: center; flex-shrink: 0; }
     .sidebar-link .badge {
       margin-left: auto;
-      font-size: 0.65rem;
+      font-size: .62rem;
       font-weight: 700;
-      background: var(--teal);
-      color: var(--white);
       padding: 1px 6px;
-      border-radius: 20px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: white;
     }
-    .sidebar-divider { border: none; border-top: 1px solid var(--grey-100); margin: 0.75rem 1rem; }
+    .sidebar-divider { border: none; border-top: 1px solid rgba(255,255,255,.06); margin: .65rem 1rem; }
 
-    /* ── Main ── */
+    /* ── MAIN ── */
     main {
-      padding: 2rem;
-      max-width: 900px;
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 32px 36px 80px;
+      min-width: 0;
     }
 
-    /* ── Sections ── */
     .section { display: none; }
     .section.active { display: block; }
 
-    .section-header {
-      margin-bottom: 1.75rem;
-    }
-    .section-eyebrow {
-      font-size: 0.72rem;
+    /* ── SECTION HEADERS ── */
+    .page-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
       font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.4rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -.02em;
     }
-    .section-header h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.9rem;
-      font-weight: 400;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
+    .page-sub {
+      font-size: .82rem;
+      color: var(--mid);
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
-    .section-header p {
-      color: var(--grey-500);
-      font-size: 0.95rem;
-      max-width: 620px;
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--ink);
     }
 
-    /* ── Cards ── */
+    /* ── STAT CARDS ── */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .dash-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .card-label { font-size: .67rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+    .card-value { font-family: 'Fraunces', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .card-sub   { font-size: .72rem; color: var(--mid); }
+    .card-red  { border-top: 3px solid var(--red-fg); }  .card-red  .card-value { color: var(--red-fg); }
+    .card-amb  { border-top: 3px solid var(--amb-fg); }  .card-amb  .card-value { color: var(--amb-fg); }
+    .card-grn  { border-top: 3px solid var(--grn-fg); }  .card-grn  .card-value { color: var(--grn-fg); }
+    .card-ink  { border-top: 3px solid var(--ink); }     .card-ink  .card-value { color: var(--ink); }
+
+    /* ── GENERIC CARDS ── */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
     }
     .card {
-      background: var(--white);
+      background: white;
       border-radius: var(--radius);
-      padding: 1.25rem;
+      padding: 18px 16px;
       box-shadow: var(--shadow);
-      border: 1px solid var(--grey-100);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--line);
+      transition: border-color .15s, transform .15s;
     }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(10,126,164,0.14); }
+    .card:hover { border-color: var(--navy-b); transform: translateY(-2px); }
     .card-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
+      width: 38px; height: 38px;
+      border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 0.85rem;
+      font-size: 1.1rem;
+      margin-bottom: .75rem;
     }
-    .card-icon.teal  { background: var(--teal-lt); }
-    .card-icon.gold  { background: var(--gold-lt); }
-    .card-icon.navy  { background: #E8EEF6; }
-    .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--navy); }
-    .card p  { font-size: 0.82rem; color: var(--grey-500); line-height: 1.5; }
+    .ci-red  { background: var(--red-bg); }
+    .ci-amb  { background: var(--amb-bg); }
+    .ci-grn  { background: var(--grn-bg); }
+    .ci-blu  { background: var(--blu-bg); }
+    .ci-ink  { background: var(--cream); }
+    .card h3 { font-size: .92rem; font-weight: 600; margin-bottom: .3rem; color: var(--ink); }
+    .card p  { font-size: .8rem; color: var(--mid); line-height: 1.5; }
 
-    /* ── Timeline ── */
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 10px; top: 4px; bottom: 4px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--teal), var(--gold));
-      border-radius: 2px;
-    }
-    .tl-item {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -1.65rem; top: 4px;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--teal);
-      border: 2px solid var(--white);
-      box-shadow: 0 0 0 2px var(--teal);
-    }
-    .tl-phase {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.2rem;
-    }
-    .tl-title { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
-    .tl-desc  { font-size: 0.84rem; color: var(--grey-500); }
-    .tl-tasks {
-      margin-top: 0.5rem;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .tl-tasks li {
-      background: var(--grey-100);
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      color: var(--grey-800);
-    }
-
-    /* ── Module cards (numbered) ── */
-    .module-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    /* ── MODULE LIST ── */
+    .module-list { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 24px; }
     .module-card {
-      background: var(--white);
+      background: white;
       border-radius: var(--radius);
-      padding: 1.1rem 1.25rem;
+      padding: 14px 18px;
       box-shadow: var(--shadow);
-      border: 1px solid var(--grey-100);
+      border: 1px solid var(--line);
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
-      cursor: pointer;
-      transition: border-color 0.18s, box-shadow 0.18s;
+      gap: 14px;
+      transition: border-color .15s;
     }
-    .module-card:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(10,126,164,0.12); }
+    .module-card:hover { border-color: var(--navy-b); }
     .module-num {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: var(--navy);
-      color: var(--white);
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--navy-a), var(--navy-b));
+      color: #f0eeff;
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      font-weight: 700;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .module-body h3 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; }
-    .module-body p  { font-size: 0.81rem; color: var(--grey-500); }
+    .module-body h3 { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .2rem; }
+    .module-body p  { font-size: .78rem; color: var(--mid); }
     .module-status {
       margin-left: auto;
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: 2px 8px;
       border-radius: 20px;
       white-space: nowrap;
       align-self: center;
       flex-shrink: 0;
     }
-    .status-new   { background: var(--teal-lt); color: var(--teal); }
-    .status-todo  { background: var(--grey-100); color: var(--grey-500); }
-    .status-done  { background: #E6F6EE; color: #1A7A47; }
+    .status-new  { background: var(--blu-bg);  color: var(--blu-fg); }
+    .status-todo { background: var(--cream);   color: var(--mid); }
+    .status-done { background: var(--grn-bg);  color: var(--grn-fg); }
 
-    /* ── Principles grid ── */
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 2rem; margin-bottom: 24px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 4px; bottom: 4px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--navy-b), var(--accent));
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 1.5rem; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem; top: 5px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--navy-b);
+      border: 2px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--navy-b);
+    }
+    .tl-phase  { font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+    .tl-title  { font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
+    .tl-desc   { font-size: .8rem; color: var(--mid); }
+    .tl-tasks  { margin-top: .5rem; list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tl-tasks li { background: var(--cream); font-size: .72rem; padding: .2rem .6rem; border-radius: 4px; color: var(--mid); font-family: 'DM Mono', monospace; }
+
+    /* ── PRINCIPLES ── */
     .principles-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
     }
     .principle-card {
-      background: var(--white);
+      background: white;
       border-radius: var(--radius);
-      padding: 1.25rem;
+      padding: 18px 16px;
       box-shadow: var(--shadow);
-      border-top: 3px solid var(--teal);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--accent);
     }
-    .principle-emoji { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
-    .principle-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
-    .principle-card p  { font-size: 0.8rem; color: var(--grey-500); }
+    .principle-emoji { font-size: 1.4rem; margin-bottom: .55rem; display: block; }
+    .principle-card h3 { font-size: .88rem; font-weight: 700; color: var(--ink); margin-bottom: .3rem; }
+    .principle-card p  { font-size: .78rem; color: var(--mid); }
 
-    /* ── Info box ── */
-    .info-box {
-      background: var(--teal-lt);
-      border-left: 4px solid var(--teal);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.25rem;
-      font-size: 0.88rem;
-      color: var(--navy);
+    /* ── ALERTS ── */
+    .alert {
+      padding: 11px 15px;
+      border-radius: var(--radius);
+      font-size: .82rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
-    .info-box strong { color: var(--teal); }
+    .alert-red  { background: var(--red-bg); color: var(--red-fg); border-left: 4px solid var(--red-fg); }
+    .alert-amb  { background: var(--amb-bg); color: var(--amb-fg); border-left: 4px solid var(--amb-fg); }
+    .alert-grn  { background: var(--grn-bg); color: var(--grn-fg); border-left: 4px solid var(--grn-fg); }
+    .alert-blu  { background: var(--blu-bg); color: var(--blu-fg); border-left: 4px solid var(--blu-fg); }
 
-    .warn-box {
-      background: var(--gold-lt);
-      border-left: 4px solid var(--gold);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.25rem;
-      font-size: 0.88rem;
-      color: var(--navy);
+    /* ── DO / DON'T ── */
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .do-box   { background: var(--grn-bg); border-radius: var(--radius); padding: 16px; }
+    .dont-box { background: var(--red-bg); border-radius: var(--radius); padding: 16px; }
+    .do-box h4   { font-size: .68rem; font-weight: 700; color: var(--grn-fg); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .65rem; }
+    .dont-box h4 { font-size: .68rem; font-weight: 700; color: var(--red-fg); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .65rem; }
+    .do-box ul, .dont-box ul { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .do-box li, .dont-box li { font-size: .8rem; display: flex; gap: .5rem; }
+    .do-box li::before   { content: '✓'; color: var(--grn-fg); font-weight: 700; flex-shrink: 0; }
+    .dont-box li::before { content: '✗'; color: var(--red-fg); font-weight: 700; flex-shrink: 0; }
+
+    /* ── CHECKLIST ── */
+    .checklist-week-label {
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .65rem;
+      margin-top: .25rem;
     }
-    .warn-box strong { color: #B07200; }
-
-    /* ── Checklist ── */
-    .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.25rem; }
     .checklist li {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      background: var(--white);
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      border: 1px solid var(--grey-100);
-      font-size: 0.88rem;
+      gap: .75rem;
+      background: white;
+      padding: .7rem 1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      font-size: .82rem;
+      transition: background .12s;
     }
+    .checklist li:hover { background: var(--yell); }
     .checklist input[type="checkbox"] {
-      width: 16px; height: 16px;
-      accent-color: var(--teal);
+      width: 15px; height: 15px;
+      accent-color: var(--accent);
       flex-shrink: 0;
       margin-top: 2px;
       cursor: pointer;
     }
-    .checklist label { cursor: pointer; color: var(--grey-800); }
-    .checklist input:checked + label { text-decoration: line-through; color: var(--grey-500); }
+    .checklist label { cursor: pointer; color: var(--ink); }
+    .checklist input:checked + label { text-decoration: line-through; color: var(--mid); }
 
-    /* ── Two-col ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* ── TWO COL ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    /* ── Do/Don't ── */
-    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-    .do-box, .dont-box {
-      border-radius: var(--radius);
-      padding: 1.1rem 1.25rem;
-    }
-    .do-box   { background: #E6F6EE; }
-    .dont-box { background: #FDECEA; }
-    .do-box h4   { font-size: 0.78rem; font-weight: 700; color: #1A7A47; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.65rem; }
-    .dont-box h4 { font-size: 0.78rem; font-weight: 700; color: #C0392B; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.65rem; }
-    .do-box ul, .dont-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-    .do-box li, .dont-box li { font-size: 0.83rem; display: flex; gap: 0.5rem; }
-    .do-box li::before   { content: '✓'; color: #1A7A47; font-weight: 700; flex-shrink: 0; }
-    .dont-box li::before { content: '✗'; color: #C0392B; font-weight: 700; flex-shrink: 0; }
-
-    /* ── CTA Button ── */
-    .btn {
+    /* ── PILL ── */
+    .pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: .68rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pill-blu  { background: var(--blu-bg);  color: var(--blu-fg); }
+    .pill-grn  { background: var(--grn-bg);  color: var(--grn-fg); }
+    .pill-amb  { background: var(--amb-bg);  color: var(--amb-fg); }
+    .pill-red  { background: var(--red-bg);  color: var(--red-fg); }
+    .pill-grey { background: var(--cream);   color: var(--mid); }
+
+    /* ── BTN ── */
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: .85rem;
       font-weight: 600;
       cursor: pointer;
-      border: none;
+      border-radius: var(--radius);
+      transition: background .15s, transform .1s;
       text-decoration: none;
-      transition: opacity 0.18s, transform 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
     }
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-primary { background: var(--teal); color: var(--white); }
-    .btn-navy    { background: var(--navy); color: var(--white); }
-    .btn-ghost   { background: var(--grey-100); color: var(--navy); }
+    .btn:hover { background: #96104a; transform: translateY(-1px); }
+    .btn-ghost { background: white; color: var(--ink); border: 1px solid var(--line); }
+    .btn-ghost:hover { background: var(--cream); }
 
-    /* ── Responsive ── */
-    @media (max-width: 760px) {
-      .layout { grid-template-columns: 1fr; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .app-body { flex-direction: column; overflow: visible; }
       aside { display: none; }
+      main { padding: 16px 14px 60px; }
+      .dash-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .two-col, .do-dont { grid-template-columns: 1fr; }
-      header nav { display: none; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ Header ══ -->
-<header>
-  <div class="header-brand">
-    <div class="logo-mark">DBI</div>
-    <div>
-      <div class="brand-name">Duisburg Business Innovation</div>
-      <div class="brand-sub">New Hire Playbook</div>
-    </div>
-  </div>
-  <nav>
-    <a href="#" onclick="showSection('welcome')">Welcome</a>
-    <a href="#" onclick="showSection('modules')">Modules</a>
-    <a href="#" onclick="showSection('roadmap')">Roadmap</a>
-    <a href="#" onclick="showSection('checklist')">My Checklist</a>
-  </nav>
-</header>
+<!-- ── TOP BAR ── -->
+<div class="topbar">
+  <div class="topbar-logo">DBI <span>Playbook</span></div>
+  <div class="topbar-title">New Hire Onboarding Dashboard</div>
+  <div class="topbar-date" id="topbar-date"></div>
+</div>
 
-<!-- ══ Hero ══ -->
+<!-- ── HERO ── -->
 <div class="hero">
   <div class="hero-eyebrow">Your first weeks at DBI — made clear</div>
   <h1>Welcome to<br><em>your new chapter.</em></h1>
-  <p>This playbook is your practical guide to settling in — not a rulebook, but your personal map for navigating DBI with confidence.</p>
+  <p>A practical guide to settling in at Duisburg Business Innovation — not a rulebook, but your personal map for navigating DBI with confidence.</p>
   <div class="hero-chips">
-    <span class="chip gold">📍 Start here</span>
+    <span class="chip accent">📍 Start here</span>
     <span class="chip">40+ colleagues</span>
     <span class="chip">6-month onboarding arc</span>
     <span class="chip">Living document</span>
   </div>
 </div>
 
-<!-- ══ Progress ══ -->
-<div class="progress-bar-wrap">
-  <span class="progress-label">Your progress</span>
+<!-- ── PROGRESS ── -->
+<div class="progress-bar-wrap-top">
+  <span class="progress-label-top">Your checklist progress</span>
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
   </div>
   <span class="progress-pct" id="progressPct">0%</span>
 </div>
 
-<!-- ══ Layout ══ -->
-<div class="layout">
+<!-- ── LAYOUT ── -->
+<div class="app-body">
 
-  <!-- Sidebar -->
+  <!-- SIDEBAR -->
   <aside>
-    <div class="sidebar-section">
-      <div class="sidebar-heading">Getting Started</div>
-      <button class="sidebar-link active" onclick="showSection('welcome', this)">
-        <span class="icon">👋</span> Welcome
-      </button>
-      <button class="sidebar-link" onclick="showSection('what-is', this)">
-        <span class="icon">📖</span> What is DBI?
-      </button>
-      <button class="sidebar-link" onclick="showSection('principles', this)">
-        <span class="icon">🧭</span> How We Work
-      </button>
-    </div>
+    <div class="sidebar-heading">Getting Started</div>
+    <button class="sidebar-link active" onclick="showSection('welcome', this)">
+      <span class="icon">👋</span> Welcome
+    </button>
+    <button class="sidebar-link" onclick="showSection('what-is', this)">
+      <span class="icon">📖</span> What is DBI?
+    </button>
+    <button class="sidebar-link" onclick="showSection('principles', this)">
+      <span class="icon">🧭</span> How We Work
+    </button>
+
     <hr class="sidebar-divider" />
-    <div class="sidebar-section">
-      <div class="sidebar-heading">The Playbook</div>
-      <button class="sidebar-link" onclick="showSection('modules', this)">
-        <span class="icon">🧩</span> Modules
-        <span class="badge">6</span>
-      </button>
-      <button class="sidebar-link" onclick="showSection('roadmap', this)">
-        <span class="icon">🗺️</span> Your Roadmap
-      </button>
-      <button class="sidebar-link" onclick="showSection('tools', this)">
-        <span class="icon">🔧</span> Tools We Use
-      </button>
-      <button class="sidebar-link" onclick="showSection('decisions', this)">
-        <span class="icon">⚡</span> Decision-Making
-      </button>
-    </div>
+    <div class="sidebar-heading">The Playbook</div>
+    <button class="sidebar-link" onclick="showSection('modules', this)">
+      <span class="icon">🧩</span> Modules
+      <span class="badge">6</span>
+    </button>
+    <button class="sidebar-link" onclick="showSection('roadmap', this)">
+      <span class="icon">🗺️</span> Your Roadmap
+    </button>
+    <button class="sidebar-link" onclick="showSection('tools', this)">
+      <span class="icon">🔧</span> Tools We Use
+    </button>
+    <button class="sidebar-link" onclick="showSection('decisions', this)">
+      <span class="icon">⚡</span> Decision-Making
+    </button>
+
     <hr class="sidebar-divider" />
-    <div class="sidebar-section">
-      <div class="sidebar-heading">Your First Weeks</div>
-      <button class="sidebar-link" onclick="showSection('checklist', this)">
-        <span class="icon">✅</span> My Checklist
-      </button>
-      <button class="sidebar-link" onclick="showSection('contacts', this)">
-        <span class="icon">👥</span> Key Contacts
-      </button>
-    </div>
+    <div class="sidebar-heading">Your First Weeks</div>
+    <button class="sidebar-link" onclick="showSection('checklist', this)">
+      <span class="icon">✅</span> My Checklist
+    </button>
+    <button class="sidebar-link" onclick="showSection('contacts', this)">
+      <span class="icon">👥</span> Key Contacts
+    </button>
   </aside>
 
-  <!-- Main Content -->
+  <!-- MAIN -->
   <main>
 
-    <!-- ── Welcome ── -->
+    <!-- ══ WELCOME ══ -->
     <section id="welcome" class="section active">
-      <div class="section-header">
-        <div class="section-eyebrow">Getting Started</div>
-        <h2>Welcome aboard.</h2>
-        <p>This playbook is your shortcut to understanding how DBI operates — not from a compliance lens, but from a human one.</p>
-      </div>
+      <div class="page-title">Welcome aboard.</div>
+      <div class="page-sub">This playbook is your shortcut to understanding how DBI operates — not from a compliance lens, but from a human one.</div>
 
-      <div class="info-box">
+      <div class="alert alert-blu">
         <strong>This is not the HR Manual.</strong> It's a practical guide that shows you how things actually work, how decisions get made, and how to connect with your team quickly.
       </div>
 
       <div class="card-grid">
-        <div class="card">
-          <div class="card-icon teal">💬</div>
-          <h3>Communication Formats</h3>
-          <p>How we talk to each other — meeting rhythms, channels, and norms.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">🤝</div>
-          <h3>Collaboration Standards</h3>
-          <p>The shared way of working that keeps 40+ people moving forward.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">🔧</div>
-          <h3>Tools & Systems</h3>
-          <p>Which tools we use, what they're for, and where to find help.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon teal">⚡</div>
-          <h3>Decision Standards</h3>
-          <p>How decisions are made, who owns what, and when to escalate.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">🚀</div>
-          <h3>Onboarding Path</h3>
-          <p>Your structured first 6 months, phase by phase.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">📊</div>
-          <h3>Your Role in Projects</h3>
-          <p>What's expected of you — and what is definitely not your job.</p>
-        </div>
+        <div class="card"><div class="card-icon ci-red">💬</div><h3>Communication Formats</h3><p>How we talk to each other — meeting rhythms, channels, and norms.</p></div>
+        <div class="card"><div class="card-icon ci-amb">🤝</div><h3>Collaboration Standards</h3><p>The shared way of working that keeps 40+ people moving forward.</p></div>
+        <div class="card"><div class="card-icon ci-blu">🔧</div><h3>Tools & Systems</h3><p>Which tools we use, what they're for, and where to find help.</p></div>
+        <div class="card"><div class="card-icon ci-ink">⚡</div><h3>Decision Standards</h3><p>How decisions are made, who owns what, and when to escalate.</p></div>
+        <div class="card"><div class="card-icon ci-grn">🚀</div><h3>Onboarding Path</h3><p>Your structured first 6 months, phase by phase.</p></div>
+        <div class="card"><div class="card-icon ci-red">📊</div><h3>Your Role in Projects</h3><p>What's expected of you — and what is definitely not your job.</p></div>
       </div>
 
-      <div class="warn-box">
+      <div class="alert alert-amb">
         <strong>Good to know:</strong> DBI has grown to 40+ people. With growth comes complexity — this playbook is how we stay aligned without adding bureaucracy.
+      </div>
+
+      <!-- Mini stats -->
+      <div class="dash-grid" style="margin-top:8px">
+        <div class="dash-card card-ink"><div class="card-label">Colleagues</div><div class="card-value">40+</div><div class="card-sub">Across all teams</div></div>
+        <div class="dash-card card-red"><div class="card-label">Playbook Modules</div><div class="card-value">6</div><div class="card-sub">Covering the full arc</div></div>
+        <div class="dash-card card-amb"><div class="card-label">Onboarding Arc</div><div class="card-value">6M</div><div class="card-sub">Phased, not rushed</div></div>
+        <div class="dash-card card-grn"><div class="card-label">Nav Levels</div><div class="card-value">Max 2</div><div class="card-sub">Simple by design</div></div>
       </div>
     </section>
 
-    <!-- ── What is DBI ── -->
+    <!-- ══ WHAT IS DBI ══ -->
     <section id="what-is" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">The Organisation</div>
-        <h2>What is DBI?</h2>
-        <p>Duisburg Business Innovation (DBI) drives economic growth and innovation in the Duisburg region — working at the intersection of business, city strategy, and entrepreneurship.</p>
-      </div>
+      <div class="page-title">What is DBI?</div>
+      <div class="page-sub">Duisburg Business Innovation drives economic growth and innovation in the Duisburg region — working at the intersection of business, city strategy, and entrepreneurship.</div>
 
       <div class="do-dont">
         <div class="do-box">
@@ -687,284 +673,121 @@
         </div>
       </div>
 
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>The Operating System</h2>
-        <p>Think of the Playbook as DBI's operating system — practical work architecture, not theory.</p>
-      </div>
+      <div class="section-title">The Operating System</div>
+      <div class="page-sub" style="margin-bottom:16px">Think of the Playbook as DBI's operating system — practical work architecture, not theory.</div>
 
       <div class="principles-grid">
-        <div class="principle-card">
-          <span class="principle-emoji">💬</span>
-          <h3>Communication</h3>
-          <p>How we talk — meeting formats, channels, tone, and cadence.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">🤝</span>
-          <h3>Collaboration</h3>
-          <p>How we build together — roles, responsibilities, handoffs.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">🔧</span>
-          <h3>Tools</h3>
-          <p>The digital infrastructure that powers our daily work.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">⚡</span>
-          <h3>Decisions</h3>
-          <p>Who decides what, and how we make it happen quickly.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">🚀</span>
-          <h3>Onboarding</h3>
-          <p>A structured arc to get you settled in and contributing fast.</p>
-        </div>
+        <div class="principle-card"><span class="principle-emoji">💬</span><h3>Communication</h3><p>How we talk — meeting formats, channels, tone, and cadence.</p></div>
+        <div class="principle-card"><span class="principle-emoji">🤝</span><h3>Collaboration</h3><p>How we build together — roles, responsibilities, handoffs.</p></div>
+        <div class="principle-card"><span class="principle-emoji">🔧</span><h3>Tools</h3><p>The digital infrastructure that powers our daily work.</p></div>
+        <div class="principle-card"><span class="principle-emoji">⚡</span><h3>Decisions</h3><p>Who decides what, and how we make it happen quickly.</p></div>
+        <div class="principle-card"><span class="principle-emoji">🚀</span><h3>Onboarding</h3><p>A structured arc to get you settled in and contributing fast.</p></div>
       </div>
     </section>
 
-    <!-- ── Principles ── -->
+    <!-- ══ PRINCIPLES ══ -->
     <section id="principles" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">How We Work</div>
-        <h2>Working Principles</h2>
-        <p>These five principles guide every project at DBI. They're not slogans — they're how we actually operate.</p>
+      <div class="page-title">How We Work</div>
+      <div class="page-sub">Five principles guide every project at DBI. They're not slogans — they're how we actually operate.</div>
+
+      <div class="principles-grid" style="margin-bottom:24px">
+        <div class="principle-card"><span class="principle-emoji">📊</span><h3>Analytical</h3><p>Data and facts as the foundation of every recommendation.</p></div>
+        <div class="principle-card"><span class="principle-emoji">📐</span><h3>Structured</h3><p>Clear order and systematics — no guesswork in deliverables.</p></div>
+        <div class="principle-card"><span class="principle-emoji">💡</span><h3>Data-Based</h3><p>Decisions backed by evidence. Opinions are inputs, not outputs.</p></div>
+        <div class="principle-card"><span class="principle-emoji">🎯</span><h3>Pragmatic</h3><p>Solution-oriented and feasible. We solve real problems, practically.</p></div>
+        <div class="principle-card"><span class="principle-emoji">📋</span><h3>Presentation-Ready</h3><p>Communicable and clear. If it can't be shown, it's not done.</p></div>
       </div>
 
-      <div class="principles-grid" style="margin-bottom: 2rem;">
-        <div class="principle-card">
-          <span class="principle-emoji">📊</span>
-          <h3>Analytical</h3>
-          <p>Data and facts as the foundation of every recommendation.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">📐</span>
-          <h3>Structured</h3>
-          <p>Clear order and systematics — no guesswork in deliverables.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">💡</span>
-          <h3>Data-Based</h3>
-          <p>Decisions backed by evidence. Opinions are inputs, not outputs.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">🎯</span>
-          <h3>Pragmatic</h3>
-          <p>Solution-oriented and feasible. We solve real problems, practically.</p>
-        </div>
-        <div class="principle-card">
-          <span class="principle-emoji">📋</span>
-          <h3>Presentation-Ready</h3>
-          <p>Communicable and clear. If it can't be shown, it's not done.</p>
-        </div>
-      </div>
-
-      <div class="info-box">
+      <div class="alert alert-grn">
         <strong>The goal:</strong> System logic instead of one-off solutions. We build things that scale — not workarounds that need fixing next month.
       </div>
 
-      <div class="section-header" style="margin-top: 2rem;">
-        <h2>Clarity of Expectations</h2>
-      </div>
-
+      <div class="section-title" style="margin-top:8px">Clarity of Expectations</div>
       <div class="card-grid">
-        <div class="card">
-          <div class="card-icon teal">⏰</div>
-          <h3>Clear Deadlines</h3>
-          <p>Agreed deadlines are kept. Flag issues early — never silently miss.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">📁</div>
-          <h3>Clean Documentation</h3>
-          <p>Everything traceable and complete. Your future self will thank you.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">📊</div>
-          <h3>Structured Results</h3>
-          <p>Presentable and clearly structured. Never hand over raw notes.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon teal">🔄</div>
-          <h3>Regular Check-ins</h3>
-          <p>Continuous exchange — proactive updates, not reactive fire-fighting.</p>
-        </div>
+        <div class="card"><div class="card-icon ci-red">⏰</div><h3>Clear Deadlines</h3><p>Agreed deadlines are kept. Flag issues early — never silently miss.</p></div>
+        <div class="card"><div class="card-icon ci-amb">📁</div><h3>Clean Documentation</h3><p>Everything traceable and complete. Your future self will thank you.</p></div>
+        <div class="card"><div class="card-icon ci-ink">📊</div><h3>Structured Results</h3><p>Presentable and clearly structured. Never hand over raw notes.</p></div>
+        <div class="card"><div class="card-icon ci-grn">🔄</div><h3>Regular Check-ins</h3><p>Continuous exchange — proactive updates, not reactive fire-fighting.</p></div>
       </div>
     </section>
 
-    <!-- ── Modules ── -->
+    <!-- ══ MODULES ══ -->
     <section id="modules" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Playbook Structure</div>
-        <h2>The 6 Modules</h2>
-        <p>The Playbook is organised into six interconnected modules. Each one can be navigated independently — max two levels deep.</p>
-      </div>
+      <div class="page-title">The 6 Modules</div>
+      <div class="page-sub">The Playbook is organised into six interconnected modules. Each one can be navigated independently — max two levels deep.</div>
 
       <div class="module-list">
-        <div class="module-card">
-          <div class="module-num">01</div>
-          <div class="module-body">
-            <h3>Communication Formats</h3>
-            <p>Meeting rhythms, channel norms, async vs sync — how we stay aligned without over-meeting.</p>
-          </div>
-          <span class="module-status status-new">Explore →</span>
-        </div>
-        <div class="module-card">
-          <div class="module-num">02</div>
-          <div class="module-body">
-            <h3>Work Standards</h3>
-            <p>Document templates, handoff protocols, quality bars — the craft layer of DBI work.</p>
-          </div>
-          <span class="module-status status-new">Explore →</span>
-        </div>
-        <div class="module-card">
-          <div class="module-num">03</div>
-          <div class="module-body">
-            <h3>Tools</h3>
-            <p>Every tool we use, what it's for, who owns it, and where duplications have been resolved.</p>
-          </div>
-          <span class="module-status status-new">Explore →</span>
-        </div>
-        <div class="module-card">
-          <div class="module-num">04</div>
-          <div class="module-body">
-            <h3>Decision Standards</h3>
-            <p>Decision types, ownership levels, escalation paths — so nothing stalls waiting for approval.</p>
-          </div>
-          <span class="module-status status-todo">Coming soon</span>
-        </div>
-        <div class="module-card">
-          <div class="module-num">05</div>
-          <div class="module-body">
-            <h3>HR Management Impulses</h3>
-            <p>Key HR rhythms — feedback cycles, growth conversations, team health moments.</p>
-          </div>
-          <span class="module-status status-todo">Coming soon</span>
-        </div>
-        <div class="module-card">
-          <div class="module-num">06</div>
-          <div class="module-body">
-            <h3>Onboarding — Your Prototype</h3>
-            <p>This module is you. The first full end-to-end use of the Playbook, being built in real time.</p>
-          </div>
-          <span class="module-status status-done">Active now</span>
-        </div>
+        <div class="module-card"><div class="module-num">01</div><div class="module-body"><h3>Communication Formats</h3><p>Meeting rhythms, channel norms, async vs sync — how we stay aligned without over-meeting.</p></div><span class="module-status status-new">Explore →</span></div>
+        <div class="module-card"><div class="module-num">02</div><div class="module-body"><h3>Work Standards</h3><p>Document templates, handoff protocols, quality bars — the craft layer of DBI work.</p></div><span class="module-status status-new">Explore →</span></div>
+        <div class="module-card"><div class="module-num">03</div><div class="module-body"><h3>Tools</h3><p>Every tool we use, what it's for, who owns it, and where duplications have been resolved.</p></div><span class="module-status status-new">Explore →</span></div>
+        <div class="module-card"><div class="module-num">04</div><div class="module-body"><h3>Decision Standards</h3><p>Decision types, ownership levels, escalation paths — so nothing stalls waiting for approval.</p></div><span class="module-status status-todo">Coming soon</span></div>
+        <div class="module-card"><div class="module-num">05</div><div class="module-body"><h3>HR Management Impulses</h3><p>Key HR rhythms — feedback cycles, growth conversations, team health moments.</p></div><span class="module-status status-todo">Coming soon</span></div>
+        <div class="module-card"><div class="module-num">06</div><div class="module-body"><h3>Onboarding — Your Prototype</h3><p>This module is you. The first full end-to-end use of the Playbook, being built in real time.</p></div><span class="module-status status-done">Active now</span></div>
       </div>
     </section>
 
-    <!-- ── Roadmap ── -->
+    <!-- ══ ROADMAP ══ -->
     <section id="roadmap" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Your Onboarding Arc</div>
-        <h2>Your First 6 Months</h2>
-        <p>A phased journey from observer to contributor. Each month builds on the last.</p>
-      </div>
+      <div class="page-title">Your First 6 Months</div>
+      <div class="page-sub">A phased journey from observer to contributor. Each month builds on the last.</div>
 
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-phase">Months 1–2</div>
           <div class="tl-title">Understand — How do we really work?</div>
           <div class="tl-desc">Observe before you suggest. Learn the actual patterns of collaboration, not just what's written.</div>
-          <ul class="tl-tasks">
-            <li>Shadow key meetings</li>
-            <li>Observe tool usage</li>
-            <li>Document friction points</li>
-            <li>Interview teammates</li>
-          </ul>
+          <ul class="tl-tasks"><li>Shadow key meetings</li><li>Observe tool usage</li><li>Document friction points</li><li>Interview teammates</li></ul>
         </div>
         <div class="tl-item">
           <div class="tl-phase">Month 3</div>
           <div class="tl-title">Structure — Where do we need standards?</div>
           <div class="tl-desc">Identify patterns and gaps. Start connecting what you've observed to where structure would help.</div>
-          <ul class="tl-tasks">
-            <li>Map communication formats</li>
-            <li>Analyse tool overlaps</li>
-            <li>Review existing documents</li>
-          </ul>
+          <ul class="tl-tasks"><li>Map communication formats</li><li>Analyse tool overlaps</li><li>Review existing documents</li></ul>
         </div>
         <div class="tl-item">
           <div class="tl-phase">Month 4</div>
           <div class="tl-title">Standardise — Define minimum rules</div>
           <div class="tl-desc">Propose lightweight standards that solve real friction — not just theoretical improvements.</div>
-          <ul class="tl-tasks">
-            <li>Draft work standards</li>
-            <li>Propose decision frameworks</li>
-            <li>Validate with teammates</li>
-          </ul>
+          <ul class="tl-tasks"><li>Draft work standards</li><li>Propose decision frameworks</li><li>Validate with teammates</li></ul>
         </div>
         <div class="tl-item">
           <div class="tl-phase">Month 5</div>
           <div class="tl-title">Digitise — Set up the dashboard</div>
           <div class="tl-desc">Translate the standards into the living digital system — modular, clickable, max 2 navigation levels.</div>
-          <ul class="tl-tasks">
-            <li>Build module structure</li>
-            <li>Populate content</li>
-            <li>Connect tools</li>
-          </ul>
+          <ul class="tl-tasks"><li>Build module structure</li><li>Populate content</li><li>Connect tools</li></ul>
         </div>
         <div class="tl-item">
           <div class="tl-phase">Month 6</div>
           <div class="tl-title">Test & Optimise — Pilot and feedback</div>
           <div class="tl-desc">Run the Playbook with the team. Collect real feedback and iterate — this is a living system, not a launch.</div>
-          <ul class="tl-tasks">
-            <li>Pilot with new joiners</li>
-            <li>Collect structured feedback</li>
-            <li>Publish v1.0</li>
-          </ul>
+          <ul class="tl-tasks"><li>Pilot with new joiners</li><li>Collect structured feedback</li><li>Publish v1.0</li></ul>
         </div>
       </div>
     </section>
 
-    <!-- ── Tools ── -->
+    <!-- ══ TOOLS ══ -->
     <section id="tools" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Module 03</div>
-        <h2>Tools We Use</h2>
-        <p>Every tool has a purpose. We aim for no duplication — if two tools do the same job, we pick one.</p>
-      </div>
+      <div class="page-title">Tools We Use</div>
+      <div class="page-sub">Every tool has a purpose. We aim for no duplication — if two tools do the same job, we pick one.</div>
 
-      <div class="info-box">
+      <div class="alert alert-blu">
         <strong>Principle:</strong> Use the right tool for the job — consistently. Switching between tools for the same task creates knowledge silos.
       </div>
 
       <div class="card-grid">
-        <div class="card">
-          <div class="card-icon teal">📁</div>
-          <h3>Document Management</h3>
-          <p>All documents live in a shared, structured folder system. Ask your lead for access in Week 1.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">💬</div>
-          <h3>Internal Communication</h3>
-          <p>Quick questions go in the team channel. Decisions and context belong in a document.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">📋</div>
-          <h3>Task Management</h3>
-          <p>Tasks are tracked centrally. If it's not in the system, it doesn't officially exist.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon teal">📊</div>
-          <h3>Reporting & Analytics</h3>
-          <p>Data-backed presentations are the standard. Dashboards before raw spreadsheets.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">🎥</div>
-          <h3>Video Calls</h3>
-          <p>Used for syncs and external meetings. Camera-on is the default culture at DBI.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">🔗</div>
-          <h3>Tool Map</h3>
-          <p>A full tool map with owners and use-cases is being built in Month 3 of the project.</p>
-        </div>
+        <div class="card"><div class="card-icon ci-blu">📁</div><h3>Document Management</h3><p>All documents live in a shared, structured folder system. Ask your lead for access in Week 1.</p></div>
+        <div class="card"><div class="card-icon ci-red">💬</div><h3>Internal Communication</h3><p>Quick questions go in the team channel. Decisions and context belong in a document.</p></div>
+        <div class="card"><div class="card-icon ci-ink">📋</div><h3>Task Management</h3><p>Tasks are tracked centrally. If it's not in the system, it doesn't officially exist.</p></div>
+        <div class="card"><div class="card-icon ci-amb">📊</div><h3>Reporting & Analytics</h3><p>Data-backed presentations are the standard. Dashboards before raw spreadsheets.</p></div>
+        <div class="card"><div class="card-icon ci-grn">🎥</div><h3>Video Calls</h3><p>Used for syncs and external meetings. Camera-on is the default culture at DBI.</p></div>
+        <div class="card"><div class="card-icon ci-blu">🔗</div><h3>Tool Map</h3><p>A full tool map with owners and use-cases is being built in Month 3 of the project.</p></div>
       </div>
     </section>
 
-    <!-- ── Decisions ── -->
+    <!-- ══ DECISIONS ══ -->
     <section id="decisions" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Module 04</div>
-        <h2>How We Make Decisions</h2>
-        <p>Unclear decision-making is one of the most common friction points in growing teams. Here's how DBI handles it.</p>
-      </div>
+      <div class="page-title">How We Make Decisions</div>
+      <div class="page-sub">Unclear decision-making is one of the most common friction points in growing teams. Here's how DBI handles it.</div>
 
       <div class="do-dont">
         <div class="do-box">
@@ -988,35 +811,20 @@
       </div>
 
       <div class="card-grid">
-        <div class="card">
-          <div class="card-icon teal">⚡</div>
-          <h3>Day-to-Day Decisions</h3>
-          <p>Own them. Small operational choices are yours to make — document the reasoning briefly.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">🤝</div>
-          <h3>Team Decisions</h3>
-          <p>Consult affected colleagues. Use a short async brief before calling a meeting.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">📈</div>
-          <h3>Strategic Decisions</h3>
-          <p>Bring analysis, not just questions. Proposals with evidence get decided faster.</p>
-        </div>
+        <div class="card"><div class="card-icon ci-grn">⚡</div><h3>Day-to-Day Decisions</h3><p>Own them. Small operational choices are yours to make — document the reasoning briefly.</p></div>
+        <div class="card"><div class="card-icon ci-amb">🤝</div><h3>Team Decisions</h3><p>Consult affected colleagues. Use a short async brief before calling a meeting.</p></div>
+        <div class="card"><div class="card-icon ci-blu">📈</div><h3>Strategic Decisions</h3><p>Bring analysis, not just questions. Proposals with evidence get decided faster.</p></div>
       </div>
     </section>
 
-    <!-- ── Checklist ── -->
+    <!-- ══ CHECKLIST ══ -->
     <section id="checklist" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Week by Week</div>
-        <h2>My First Weeks Checklist</h2>
-        <p>Track your progress through the essential first steps at DBI. Check off as you go.</p>
-      </div>
+      <div class="page-title">My First Weeks Checklist</div>
+      <div class="page-sub">Track your progress through the essential first steps at DBI. The progress bar above updates as you check things off.</div>
 
-      <div class="two-col" style="margin-bottom: 1.5rem; align-items: start;">
+      <div class="two-col" style="margin-bottom:4px; align-items:start">
         <div>
-          <p style="font-size: 0.78rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem;">Week 1 — Get oriented</p>
+          <div class="checklist-week-label">Week 1 — Get oriented</div>
           <ul class="checklist">
             <li><input type="checkbox" id="c1" onchange="updateProgress()"><label for="c1">Meet your direct team lead</label></li>
             <li><input type="checkbox" id="c2" onchange="updateProgress()"><label for="c2">Set up all tools and system access</label></li>
@@ -1026,7 +834,7 @@
           </ul>
         </div>
         <div>
-          <p style="font-size: 0.78rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem;">Week 2–4 — Start contributing</p>
+          <div class="checklist-week-label">Week 2–4 — Start contributing</div>
           <ul class="checklist">
             <li><input type="checkbox" id="c6" onchange="updateProgress()"><label for="c6">Complete first work package task</label></li>
             <li><input type="checkbox" id="c7" onchange="updateProgress()"><label for="c7">Shadow two different meeting types</label></li>
@@ -1037,8 +845,8 @@
         </div>
       </div>
 
-      <p style="font-size: 0.78rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem;">Month 2 — Go deeper</p>
-      <ul class="checklist" style="margin-bottom: 1.5rem;">
+      <div class="checklist-week-label">Month 2 — Go deeper</div>
+      <ul class="checklist" style="margin-bottom:18px">
         <li><input type="checkbox" id="c11" onchange="updateProgress()"><label for="c11">Conduct at least two onboarding interviews with colleagues</label></li>
         <li><input type="checkbox" id="c12" onchange="updateProgress()"><label for="c12">Analyse current tool usage patterns</label></li>
         <li><input type="checkbox" id="c13" onchange="updateProgress()"><label for="c13">Complete As-Is Analysis of one workflow</label></li>
@@ -1046,53 +854,26 @@
         <li><input type="checkbox" id="c15" onchange="updateProgress()"><label for="c15">Complete 30-day check-in with your lead</label></li>
       </ul>
 
-      <div class="info-box">
+      <div class="alert alert-red">
         <strong>Remember:</strong> This project is organisational development — not a side job. Your observations in these first months are the foundation of everything built in months 3–6.
       </div>
     </section>
 
-    <!-- ── Contacts ── -->
+    <!-- ══ CONTACTS ══ -->
     <section id="contacts" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">People</div>
-        <h2>Key Contacts</h2>
-        <p>Who to reach for what. Building these relationships in Week 1 will save you weeks later.</p>
-      </div>
+      <div class="page-title">Key Contacts</div>
+      <div class="page-sub">Who to reach for what. Building these relationships in Week 1 will save you weeks later.</div>
 
       <div class="card-grid">
-        <div class="card">
-          <div class="card-icon teal">👤</div>
-          <h3>Your Direct Lead</h3>
-          <p>First stop for project direction, priorities, and feedback. Schedule a weekly 1:1 from day one.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">🧑‍💼</div>
-          <h3>HR Partner</h3>
-          <p>Administrative questions, contract matters, and formal onboarding processes.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">🧑‍💻</div>
-          <h3>IT / Systems</h3>
-          <p>Access requests, tool setup, and any technical blockers. Reach out in Week 1.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon teal">🤝</div>
-          <h3>Team Peers</h3>
-          <p>Your day-to-day collaborators. Introduce yourself in the team channel and shadow them early.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon gold">📣</div>
-          <h3>Communications</h3>
-          <p>External-facing work, events, and public messaging. Loop them in before publishing anything.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon navy">🏙️</div>
-          <h3>City Partners</h3>
-          <p>DBI collaborates with Duisburg city stakeholders. Your lead will brief you on active relationships.</p>
-        </div>
+        <div class="card"><div class="card-icon ci-red">👤</div><h3>Your Direct Lead</h3><p>First stop for project direction, priorities, and feedback. Schedule a weekly 1:1 from day one.</p></div>
+        <div class="card"><div class="card-icon ci-amb">🧑‍💼</div><h3>HR Partner</h3><p>Administrative questions, contract matters, and formal onboarding processes.</p></div>
+        <div class="card"><div class="card-icon ci-blu">🧑‍💻</div><h3>IT / Systems</h3><p>Access requests, tool setup, and any technical blockers. Reach out in Week 1.</p></div>
+        <div class="card"><div class="card-icon ci-grn">🤝</div><h3>Team Peers</h3><p>Your day-to-day collaborators. Introduce yourself in the team channel and shadow them early.</p></div>
+        <div class="card"><div class="card-icon ci-ink">📣</div><h3>Communications</h3><p>External-facing work, events, and public messaging. Loop them in before publishing anything.</p></div>
+        <div class="card"><div class="card-icon ci-red">🏙️</div><h3>City Partners</h3><p>DBI collaborates with Duisburg city stakeholders. Your lead will brief you on active relationships.</p></div>
       </div>
 
-      <div class="warn-box" style="margin-top: 1.5rem;">
+      <div class="alert alert-amb" style="margin-top:8px">
         <strong>Tip:</strong> Reach out to at least three colleagues proactively in your first two weeks — not just to ask questions, but to understand their work. The best onboarding happens through conversations.
       </div>
     </section>
@@ -1109,13 +890,18 @@
   }
 
   function updateProgress() {
-    const total = document.querySelectorAll('.checklist input[type="checkbox"]').length;
+    const total   = document.querySelectorAll('.checklist input[type="checkbox"]').length;
     const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
     const pct = Math.round((checked / total) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressPct').textContent  = pct + '%';
   }
 
+  function fmtDate() {
+    return new Intl.DateTimeFormat('en-US', { weekday:'short', month:'long', day:'numeric', year:'numeric' }).format(new Date());
+  }
+
+  document.getElementById('topbar-date').textContent = 'Today: ' + fmtDate();
   updateProgress();
 </script>
 </body>
